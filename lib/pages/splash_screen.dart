@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_bazar/ui/long_in.dart';
+import 'package:online_bazar/pages/auth/logIn_screen.dart';
 
 class Splash_screen extends StatefulWidget {
   const Splash_screen({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class _Splash_screenState extends State<Splash_screen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text("Online Bazar",style: TextStyle(fontSize: 30.sp,color: Colors.white),),
-              CircularProgressIndicator(),
+              const CircularProgressIndicator(),
             ],
           ),
         ),

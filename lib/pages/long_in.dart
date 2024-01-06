@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:online_bazar/ui/home_screen.dart';
-import 'package:online_bazar/ui/registration_screen.dart';
+import 'package:online_bazar/pages/home_screen.dart';
+import 'package:online_bazar/pages/auth/registration_screen.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);

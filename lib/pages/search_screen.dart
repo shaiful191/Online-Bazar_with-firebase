@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:online_bazar/ui/product_details.dart';
-import 'package:online_bazar/ui/products_description.dart';
-import 'package:online_bazar/ui/search_product_details.dart';
+import 'package:online_bazar/pages/product_details.dart';
+import 'package:online_bazar/pages/products_description.dart';
+import 'package:online_bazar/pages/search_product_details.dart';
 
 class SearchScreen extends StatefulWidget {
   @override

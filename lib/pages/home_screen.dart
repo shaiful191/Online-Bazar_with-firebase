@@ -5,12 +5,12 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_bazar/ui/added_product_list.dart';
+import 'package:online_bazar/pages/added_product_list.dart';
 
-import 'package:online_bazar/ui/product_details.dart';
-import 'package:online_bazar/ui/products_description.dart';
-import 'package:online_bazar/ui/search_screen.dart';
-import 'package:online_bazar/ui/view_all.dart';
+import 'package:online_bazar/pages/product_details.dart';
+import 'package:online_bazar/pages/products_description.dart';
+import 'package:online_bazar/pages/search_screen.dart';
+import 'package:online_bazar/pages/view_all.dart';
 
 import 'about_us.dart';
 
@@ -217,7 +217,8 @@ class _HomeState extends State<Home> {
                 ),
                 DotsIndicator(
                   dotsCount: _carouselImages.length == 0 ? 1 : _carouselImages.length,
-                  position: _dotPosition.toDouble(),
+                  position: _dotPosition.toInt(),
+                 // position: _dotPosition.toDouble(),
                   decorator: DotsDecorator(
                     activeColor: Colors.blueAccent,
                     color: Colors.blueAccent.withOpacity(0.5),

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:online_bazar/ui/products_description.dart';
+import 'package:online_bazar/pages/products_description.dart';
 import 'product_details.dart';
 class AddedList extends StatefulWidget {
   const AddedList({Key? key}) : super(key: key);

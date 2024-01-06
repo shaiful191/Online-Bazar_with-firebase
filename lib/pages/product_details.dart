@@ -4,29 +4,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_bazar/ui/added_product_list.dart';
-import 'package:online_bazar/ui/products_description.dart';
+import 'package:online_bazar/pages/added_product_list.dart';
+import 'package:online_bazar/pages/products_description.dart';
 
-class Search_product_details extends StatefulWidget {
-  String product_name, product_img,product_price,product_description;
-
-  Search_product_details(this.product_name, this.product_img,
-      this.product_price, this.product_description);
-
+class ProductDetails extends StatefulWidget {
+  var _product;
+  ProductDetails(this._product);
   @override
-  _Search_product_detailsState createState() => _Search_product_detailsState();
+  _ProductDetailsState createState() => _ProductDetailsState();
 }
 
-class _Search_product_detailsState extends State<Search_product_details> {
+class _ProductDetailsState extends State<ProductDetails> {
 
-  addToCart(){
-    addedProduct.add(
-        { 'name': widget.product_name,
-          'img': widget.product_img,
-          'price': widget.product_price,
-        }
-    );
-  }
+addToCart(){
+  addedProduct.add(
+     { 'name': widget._product["product-name"],
+    'img': widget._product["product-img"],
+     'price': widget._product["product-price"],}
+  );
+}
   // Future addToCart() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
   //   var currentUser = _auth.currentUser;
@@ -38,7 +34,7 @@ class _Search_product_detailsState extends State<Search_product_details> {
   //   }).then((value) => print("Added to cart"));
   // }
 
-  // Future addToFavourite() async {
+ // Future addToFavourite() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
   //   var currentUser = _auth.currentUser;
   //   CollectionReference _collectionRef = FirebaseFirestore.instance.collection("users-favourite-items");
@@ -69,30 +65,13 @@ class _Search_product_detailsState extends State<Search_product_details> {
         ),
         actions: [
           StreamBuilder(
-            stream: FirebaseFirestore.instance.collection("users-favourite-items").doc(FirebaseAuth.instance.currentUser!.email).collection("items").where("name", isEqualTo: widget.product_name).snapshots(),
+            stream: FirebaseFirestore.instance.collection("users-favourite-items").doc(FirebaseAuth.instance.currentUser!.email).collection("items").where("name", isEqualTo: widget._product['product-name']).snapshots(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
                 return Text("");
               }
               return Padding(
-                padding: const EdgeInsets.only(right: 8),
-                // child: CircleAvatar(
-                //   backgroundColor: Colors.blueAccent,
-                //   child: IconButton(
-                //     onPressed: (){
-                //       Navigator.push(context, CupertinoPageRoute(builder: (_)=>AddedList()));
-                //     },// snapshot.data.docs.length == 0 ? addToFavourite() : print("Already Added"),
-                //     icon: snapshot.data.docs.length == 0
-                //         ? Icon(
-                //       Icons.shopping_cart,
-                //       color: Colors.white,
-                //     )
-                //         : Icon(
-                //       Icons.favorite,
-                //       color: Colors.white,
-                //     ),
-                //   ),
-                // ),
+                  padding: const EdgeInsets.only(right: 8),
               );
             },
           ),
@@ -107,12 +86,12 @@ class _Search_product_detailsState extends State<Search_product_details> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                      padding: const EdgeInsets.only(left: 3, right: 3),
-                      child: Container(
-                          color: Colors.teal,
-                          child: Image.network(
-                            widget.product_img,fit: BoxFit.cover,
-                          ))
+                    padding: const EdgeInsets.only(left: 3, right: 3),
+                    child: Container(
+                        color: Colors.blueAccent,
+                        child: Image.network(
+                          widget._product["product-img"],fit: BoxFit.cover,
+                        ))
                   ),
                   // AspectRatio(
                   //   aspectRatio: 3.5,
@@ -135,18 +114,18 @@ class _Search_product_detailsState extends State<Search_product_details> {
                   //           })),
                   // ),
                   Text(
-                    widget.product_name,
+                    widget._product['product-name'],
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                    " ${widget.product_price.toString()}",
+                    " ${widget._product['product-price'].toString()}",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30,),
                   ),
                   SizedBox(height: 10.sp,),
-                  Text(widget.product_description,style: TextStyle(fontSize: 16.sp),),
+                  Text(widget._product['product-description'],style: TextStyle(fontSize: 16.sp),),
                   SizedBox(height: 20.sp,),
                   //Divider(),
                   SizedBox(
