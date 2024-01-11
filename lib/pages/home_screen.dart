@@ -21,6 +21,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   List<String> _carouselImages = [];
 
 
@@ -81,6 +82,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
 
           appBar: AppBar(  
@@ -293,5 +295,6 @@ class _HomeState extends State<Home> {
             ),
           )),
     );
+  
   }
 }

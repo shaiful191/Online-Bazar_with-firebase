@@ -15,14 +15,13 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-
-addToCart(){
-  addedProduct.add(
-     { 'name': widget._product["product-name"],
-    'img': widget._product["product-img"],
-     'price': widget._product["product-price"],}
-  );
-}
+  addToCart() {
+    addedProduct.add({
+      'name': widget._product["product-name"],
+      'img': widget._product["product-img"],
+      'price': widget._product["product-price"],
+    });
+  }
   // Future addToCart() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
   //   var currentUser = _auth.currentUser;
@@ -34,7 +33,7 @@ addToCart(){
   //   }).then((value) => print("Added to cart"));
   // }
 
- // Future addToFavourite() async {
+  // Future addToFavourite() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
   //   var currentUser = _auth.currentUser;
   //   CollectionReference _collectionRef = FirebaseFirestore.instance.collection("users-favourite-items");
@@ -65,13 +64,18 @@ addToCart(){
         ),
         actions: [
           StreamBuilder(
-            stream: FirebaseFirestore.instance.collection("users-favourite-items").doc(FirebaseAuth.instance.currentUser!.email).collection("items").where("name", isEqualTo: widget._product['product-name']).snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection("users-favourite-items")
+                .doc(FirebaseAuth.instance.currentUser!.email)
+                .collection("items")
+                .where("name", isEqualTo: widget._product['product-name'])
+                .snapshots(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
                 return Text("");
               }
               return Padding(
-                  padding: const EdgeInsets.only(right: 8),
+                padding: const EdgeInsets.only(right: 8),
               );
             },
           ),
@@ -79,76 +83,77 @@ addToCart(){
       ),
       body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(left: 12, right: 12, top: 10),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 3, right: 3),
-                    child: Container(
-                        color: Colors.blueAccent,
-                        child: Image.network(
-                          widget._product["product-img"],fit: BoxFit.cover,
-                        ))
-                  ),
-                  // AspectRatio(
-                  //   aspectRatio: 3.5,
-                  //   child: CarouselSlider(
-                  //       items: widget._product['product-img']
-                  //           .map<Widget>((item) => Padding(
-                  //         padding: const EdgeInsets.only(left: 3, right: 3),
-                  //         child: Container(
-                  //           decoration: BoxDecoration(image: DecorationImage(image: NetworkImage( widget._product['product-img']), fit: BoxFit.fitWidth)),
-                  //         ),
-                  //       ))
-                  //           .toList(),
-                  //       options: CarouselOptions(
-                  //           autoPlay: false,
-                  //           enlargeCenterPage: true,
-                  //           viewportFraction: 0.8,
-                  //           enlargeStrategy: CenterPageEnlargeStrategy.height,
-                  //           onPageChanged: (val, carouselPageChangedReason) {
-                  //             setState(() {});
-                  //           })),
-                  // ),
-                  Text(
-                    widget._product['product-name'],
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    " ${widget._product['product-price'].toString()}",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30,),
-                  ),
-                  SizedBox(height: 10.sp,),
-                  Text(widget._product['product-description'],style: TextStyle(fontSize: 16.sp),),
-                  SizedBox(height: 20.sp,),
-                  //Divider(),
-                  SizedBox(
-                    width: 1.sw,
-                    height: 56.h,
-                    child: ElevatedButton(
-                      onPressed: () => addToCart(),
-                      child: Text(
-                        "Add to cart",
-                        style: TextStyle(color: Colors.white, fontSize: 18.sp),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.blueAccent,
-                        elevation: 3,
-                      ),
-                    ),
+        padding: const EdgeInsets.only(left: 12, right: 12, top: 10),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                  alignment: Alignment.center,
+                  // color: Colors.blueAccent,
+                  child: Image.network(
+                    widget._product["product-img"],
+                    fit: BoxFit.cover,
+                  )),
 
-                  ),
-                  SizedBox(height: 10.sp,),
-                ],
+              SizedBox(
+                height: 20,
               ),
-            ),
-          )),
+
+              Text(
+                widget._product['product-name'],
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: Colors.black),
+              ),
+
+              Text(
+                "${widget._product['product-price'].toString()}",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 21,
+                ),
+              ),
+              SizedBox(
+                height: 4.sp,
+              ),
+              Text(
+                widget._product['product-description'],
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  color: Colors.black,
+                ),
+              ),
+              SizedBox(
+                height: 20.sp,
+              ),
+              //Divider(),
+              SizedBox(
+                width: 1.sw,
+                height: 40.h,
+                child: ElevatedButton(
+                  onPressed: () => addToCart(),
+                  child: Text(
+                    "Add to cart",
+                    style: TextStyle(color: Colors.white, fontSize: 18.sp),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueAccent,
+                    elevation: 3,
+                    shape: StadiumBorder(),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10.sp,
+              ),
+            ],
+          ),
+        ),
+      )),
     );
   }
 }
