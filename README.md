@@ -1,6 +1,6 @@
 # online_bazar
 
-A new Flutter project.
+it is an ecommerce app using firebase storage.
 
 ## Output
 
