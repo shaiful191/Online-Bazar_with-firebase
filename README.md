@@ -1,6 +1,6 @@
 # online_bazar
 
-it is an ecommerce app using firebase storage.
+A simple and responsive Flutter-based eCommerce application integrated with Firebase Authentication and Firebase Storage.
 
 ## Output
 
